@@ -1,2 +1,2 @@
 # ang-proj
-A quick Angularjs project
+A quick AngularJS project.
