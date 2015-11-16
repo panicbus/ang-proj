@@ -8,8 +8,46 @@
 	<!-- AngularJS routing library -->
 	<script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
 </head>
-<body ng-app"myApp">
-	Hello ng-world.
+<body ng-app"Forecast">
+
+
+	<div class="main-container">
+		<div class="location-query">
+			<h3>Type in your zip code</h3>
+			<input type="text"/>
+			<input name="submit" value="submit" type="submit"/>
+		</div>
+		<div class="data-container" ng-controller="MainController">
+			<div class="forecast-container">
+				<div class="city">
+					<h2>The forecast for {{ tenDay.city }}</h2>
+				</div>
+				<div class="forecast" ng-repeat="hello in tenDay">
+					<div class="hello">
+						<div class="date">
+							{{ hello.date | date}}
+						</div>
+						<div class="icon">
+							<img src="{{ hello.icon_url }}" title="{{ hello.icon }}"/>
+						</div>
+						<div class="title">
+						{{ hello.title }}
+						</div>
+						<div class="temp-high">
+							{{ hello.high }}
+						</div>
+						<div class="temp-low">
+							{{ hello.low }}
+						</div>
+						<!-- not in 10 day -->
+						<!-- <div class="windspeed">
+
+						</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
