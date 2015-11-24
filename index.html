@@ -19,24 +19,34 @@
 		<div class="data-container">
 			<div class="forecast-container">
 				<div class="city">
-					<h2>The forecast for {{ tenDay.city }}</h2>
+					<h2>The 10 day forecast for {{ tenDay.city }}</h2>
 				</div>
-				<div class="forecast" ng-repeat="day in tenDay.days">
+				<div class="forecast" ng-repeat="day in tenDay.forecast.simpleforecast.forecastday">
 					<div class="day">
-						<div class="date">
-							<p>{{ day.datetime | date}}</p>
+						<!-- <div class="date section">
+							Date (or time)
+							<p>
+							{{ day.date }}</p>
+						</div> -->
+						<div class="day-of-the-week section">
+							Day of the week
+							<p>
+							{{ day.date.pretty }}</p>
 						</div>
 						<div class="icon">
-							<img src="{{ hello.icon_url }}" title="{{ hello.icon }}"/>
+							<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
 						</div>
-					<!-- 	<div class="title">
-							<p>{{ hello.title }}</p>
-						</div> -->
-						<div class="temp-high">
-							<p>{{ day.high }}</p>
+						<div class="text-forecast section">
+						Text forecast
+							<p>{{ day.conditions }}
 						</div>
-						<div class="temp-low">
-							<p>{{ days.low }}</p>
+						<div class="temp-high section">
+							High
+							<p>{{ day.high.fahrenheit }}</p>
+						</div>
+					  <div class="temp-low section">
+							Low
+							<p>{{ day.low.fahrenheit }}</p>
 						</div>
 						<!-- not in 10 day -->
 						<!-- <div class="windspeed">
