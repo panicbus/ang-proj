@@ -1,2 +1,2 @@
-# ang-proj
-A quick AngularJS project.
+# WeathularJS
+An AngularJS-based weather app using the Weather Underground public API.
