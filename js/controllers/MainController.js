@@ -1,8 +1,10 @@
-app.controller('MainController', ['$scope', 'forecast', function($scope, forecast) {
-  forecast.success(function(data) {
-  	// debugger
-  	// console.log("data: " + data.forecastday);
-  	// console.log("forecast: " + forecast.forecastday);
-    $scope.tenDay = data;
-  });
+app.controller('ForecastController', ['$scope', 'forecast', function($scope, forecast) {
+	$scope.search = function(){
+		forecast.search($scope.keywords).then(function(response){
+			$scope.response = response.data;
+			console.log("$scope.response " + response.data);
+			$scope.tenDay = response.data;
+		});
+	}
 }]);
+
