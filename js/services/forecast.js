@@ -1,6 +1,6 @@
 app.factory('forecast', ['$http', function($http) {
 	// var pendingTask;
- //  console.log("$scope.search: " + $scope.search);
+  // console.log("$scope.search: " + $scope.search);
 
   // if ($scope.search === undefined) {
   // 	$scope.search = "San_Francisco";
@@ -17,8 +17,10 @@ app.factory('forecast', ['$http', function($http) {
   // this part workss
   return {
   	search: function(keywords) {
-	  	return $http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/CA/San_Francisco.json')
-		    .success(function(data) {s
+		  console.log('keywords from the factory: ' + keywords);
+		  console.log('keywords ' + keywords);
+	  	return $http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/CA/' + keywords + '.json')
+		    .success(function(data) {
 		      return data;
 		    })
 	   	}

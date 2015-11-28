@@ -17,8 +17,8 @@
 		<div class="location-query">
 			<h3>Type in your zip code</h3>
 			<!-- <form ng-submit="location()"> -->
-				<input type="text" ng-model="keyword" ng-change="search()" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
-				<input name="submit" value="Submit" type="submit"/>
+				<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
+				<input name="submit" value="Submit" ng-click="search()" type="submit"/>
 			<!-- </form> -->
 		</div>
 
@@ -29,7 +29,7 @@
 	      </div> -->
 				<!-- <div ng-if="details.Data==='True'"> -->
 					<div class="city">
-						<h2>The 10 day forecast for {{ tenDay.city }}</h2>
+						<h2>The 10 day forecast for {{ keywords }}</h2>
 					</div>
 					<div class="forecast" ng-repeat="day in tenDay.forecast.simpleforecast.forecastday">
 						<div class="day">
