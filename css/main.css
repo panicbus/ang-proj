@@ -1,23 +1,35 @@
+html, body {
+	margin: 0; padding: 0;
+}
+.main-container {
+	background: #2D3C57;
+	color: #C0C4CC;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 20px;
+}
+.city {
+	padding: 0 20px;
+}
 .section {
 	padding: 5px;
-	margin: 5px 0;
+	text-align: center;
 }
-
-/*.date {
-	border: 1px solid blue;
-}
-.day-of-the-week {
-	border: 1px solid red;
+.day {
+  -moz-animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+	background: #2D3C57;
+	float: left;
 }
 .icon {
-	border: 1px dashed salmon;
+	min-height: 60px;
 }
 .text-forecast {
-	border: 1px dashed brown;
+	min-height: 64px;
+}
+.temp-high, .temp-low {
+	float: left;
+	width: 42%;
 }
 .temp-high {
-	border: 1px solid beige;
+	margin-right: 10px;
 }
-.temp-low {
-	border: 1px dashed indianred;
-}*/

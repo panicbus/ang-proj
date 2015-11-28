@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="data-container">
-			<div class="forecast-container">
+			<div class="forecast-container row">
 	      <!-- <div ng-if="!details">
 	        Loading results...
 	      </div> -->
@@ -32,23 +32,20 @@
 						<h2>The 10 day forecast for {{ keywords }}</h2>
 					</div>
 					<div class="forecast" ng-repeat="day in tenDay.forecast.simpleforecast.forecastday">
-						<div class="day">
+						<div class="day col-md-1">
 							<!-- <div class="date section">
 								Date (or time)
 								<p>
 								{{ day.date }}</p>
 							</div> -->
 							<div class="day-of-the-week section">
-								Day of the week
-								<p>
-								{{ day.date.pretty }}</p>
+								<p>{{ day.date.weekday }}</p>
 							</div>
 							<div class="icon">
 								<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
 							</div>
 							<div class="text-forecast section">
-							Text forecast
-								<p>{{ day.conditions }}
+								<p>{{ day.conditions }}<p>
 							</div>
 							<div class="temp-high section">
 								High
