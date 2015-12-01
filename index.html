@@ -11,9 +11,16 @@
 	<!-- Angular core library -->
 	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 </head>
-<body ng-app="ForecastApp">
+<body onload="getLocation()" ng-app="ForecastApp">
 
 	<div class="main-container" ng-controller="ForecastController">
+
+		<div id="locationErrorMsg"></div>
+
+		<div class="zipFinder" ng-model="zipFinder">
+			<h3>Your zip code is {{ zipFinder }}</h3>
+		</div>
+
 		<div class="location-query">
 			<h3>Type in your zip code</h3>
 			<!-- <form ng-submit="location()"> -->
@@ -78,8 +85,13 @@
 	<!-- Controllers -->
 	<script src="js/controllers/MainController.js"></script>
 
-		<!-- Services -->
-		<script src="js/services/forecast.js"></script>
+	<!-- Services -->
+	<script src="js/services/forecast.js"></script>
+	<script src="js/services/zipFinder.js"></script>
+
+	<!-- Geo Location -->
+	<script src="js/geolocation.js"></script>
+
 
 </body>
 </html>
