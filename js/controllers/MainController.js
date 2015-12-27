@@ -26,6 +26,7 @@ app.controller('MainCtrl', function($scope, $http) {
           // limit the ng-repeat to 1
           $scope.quantity = 1;
           console.log("THE ZIP IS: " + zipcode );
+
         });
     }, function(error) {
       alert('Unable to get location: ' + error.message);
@@ -33,3 +34,36 @@ app.controller('MainCtrl', function($scope, $http) {
   }
 
 });
+
+
+app.controller('MainCtrl', function($scope, $http) {
+	console.log("DROPZIP has run");
+	$scope.dropZip = function(zipcode) {
+
+		navigator.geolocation.getCurrentPosition(function(pos) {
+      var latlng = pos.coords.latitude +","+ pos.coords.longitude;
+      // console.log('geolocation: '+latlng);
+			$http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=AIzaSyC4Ci51DjN4v2KeWjPZECP40QOBC3iXpp8')
+        .success(function(data){
+          $scope.results = data.results;
+          zipcode = data.results[0].address_components[7].long_name;
+
+				console.log(zipcode);
+		  	$http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/' + zipcode + '.json')
+		    .success(function(data) {
+		      $scope.response = data.response;
+		      console.log($scope.response);
+		      $scope.quantity = 1;
+					$scope.tenDay = data;
+
+		    })
+      });
+
+    }, function(error) {
+      alert('Unable to get location: ' + error.message);
+    });
+
+ 	}
+});
+
+
