@@ -23,18 +23,19 @@ app.controller('MainCtrl', function($scope, $http) {
           console.log('geocode: ', data);
           $scope.results = data.results;
           zipcode = data.results[0].address_components[7].long_name;
+          $scope.quantity = 1;
           console.log("THE ZIP IS: " + zipcode );
         });
     }, function(error) {
       alert('Unable to get location: ' + error.message);
     });
   }
-  $scope.zip = function(zip){
-  	console.log('function zip has run');
-  	zipCode.zip($scope.zip).then(function(response){
-  		$scope.zipCode = response.data;
-  	})
-  	$scope.zip = zipCode;
-  }
+  // $scope.zip = function(zip){
+  // 	console.log('function zip has run');
+  // 	zipCode.zip($scope.zip).then(function(response){
+  // 		$scope.zipCode = response.data;
+  // 	})
+  // 	$scope.zip = zipCode;
+  // }
 
 });

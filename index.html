@@ -18,9 +18,9 @@
 
 		<div id="locationErrorMsg"></div>
 
-		<div class="zipFinder" ng-init="zipCode()">
-			<div ng-repeat="zip in zipCode">
-				<h3>Your zip code is {{ zip }}</h3>
+		<div class="zipFinder">
+			<div ng-repeat="result in results | limitTo:quantity">
+				<h3>Your zip code is {{ result.address_components[7].long_name }}</h3>
 			</div>
 		</div>
 
