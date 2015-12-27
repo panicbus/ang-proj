@@ -10,11 +10,10 @@ app.factory('forecast', ['$http', function($http) {
 		  console.log('keywords from the factory: ' + keywords);
 		  console.log('keywords ' + keywords);
 	  	return $http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/CA/' + keywords + '.json')
-		    .success(function(data) {
-		      return data;
-		    })
-	   	}
-		}
+	    .success(function(data) {
+	      return data;
+	    })
+   	}
+	}
 
 }]);
-
