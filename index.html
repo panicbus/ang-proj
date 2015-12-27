@@ -56,8 +56,10 @@
 		<!-- MANUAL LOCATION SEARCH -->
 		<div class="location-query">
 			<h3>Or type in a zip code</h3>
-			<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
-			<input name="submit" value="Submit" ng-click="search(keywords)" type="submit"/>
+			<form ng-submit="search(keywords)">
+				<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
+				<input name="submit" value="Submit" type="submit"/>
+			</form>
 		</div>
 
 		<div class="search-data-container">
