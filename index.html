@@ -18,100 +18,83 @@
 
 		<div id="locationErrorMsg"></div>
 
-		<div class="zipFinder">
-			<div ng-repeat="result in results | limitTo:quantity">
-				<h3>Your zip code is {{ result.address_components[7].long_name }}</h3>
-			</div>
-		</div>
+		<!-- AUTO LOCATION FINDER -->
+		<div class="auto-data-container" ng-init="dropZip()">
+			<div class="forecast-container row">
+				<div class="city" ng-repeat="result in results | limitTo:quantity">
+					<h2>The 10 day forecast for {{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}</h2>
+				</div>
+				<div class="forecast" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday">
+					<div class="day col-md-1">
+						<!-- <div class="date section">
+							Date (or time)
+							<p>
+							{{ day.date }}</p>
+						</div> -->
+						<div class="day-of-the-week section">
+							<p>{{ day.date.weekday }}</p>
+						</div>
+						<div class="icon section">
+							<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
+						</div>
+						<div class="text-forecast section">
+							<p>{{ day.conditions }}<p>
+						</div>
+						<div class="temp-high section">
+							High
+							<p>{{ day.high.fahrenheit }}</p>
+						</div>
+					  <div class="temp-low section">
+							Low
+							<p>{{ day.low.fahrenheit }}</p>
+						</div>
+					</div>
+				</div>
+			</div> <!-- end forecast-container -->
+		</div> <!-- end auto-data-container -->
 
+		<!-- MANUAL LOCATION SEARCH -->
 		<div class="location-query">
-			<h3>Type in your zip code</h3>
+			<h3>Or type in a zip code</h3>
 			<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
-			<input name="submit" value="Submit" ng-click="search()" type="submit"/>
+			<input name="submit" value="Submit" ng-click="search(keywords)" type="submit"/>
 		</div>
-
 
 		<div class="search-data-container">
 			<div class="forecast-container row">
-	      <!-- <div ng-if="!details">
-	        Loading results...
-	      </div> -->
-				<!-- <div ng-if="details.Data==='True'"> -->
-					<div class="city">
-						<h2>The 10 day forecast for {{ keywords }}</h2>
-					</div>
-					<div class="forecast" ng-repeat="day in tenDay.forecast.simpleforecast.forecastday">
-						<div class="day col-md-1">
-							<!-- <div class="date section">
-								Date (or time)
-								<p>
-								{{ day.date }}</p>
-							</div> -->
-							<div class="day-of-the-week section">
-								<p>{{ day.date.weekday }}</p>
-							</div>
-							<div class="icon section">
-								<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
-							</div>
-							<div class="text-forecast section">
-								<p>{{ day.conditions }}<p>
-							</div>
-							<div class="temp-high section">
-								High
-								<p>{{ day.high.fahrenheit }}</p>
-							</div>
-						  <div class="temp-low section">
-								Low
-								<p>{{ day.low.fahrenheit }}</p>
-							</div>
-							<!-- not in 10 day -->
-							<!-- <div class="windspeed">
-							</div> -->
+				<div class="city" ng-repeat="result in resultsSearch | limitTo:quantity">
+					<h2>The 10 day forecast for {{ result.address_components[1].long_name }}, {{ result.address_components[2].short_name}}</h2>
+				</div>
+				<div class="forecast" ng-repeat="day in tenDaySearch.forecast.simpleforecast.forecastday">
+					<div class="day col-md-1">
+						<!-- <div class="date section">
+							Date (or time)
+							<p>
+							{{ day.date }}</p>
+						</div> -->
+						<div class="day-of-the-week section">
+							<p>{{ day.date.weekday }}</p>
+						</div>
+						<div class="icon section">
+							<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
+						</div>
+						<div class="text-forecast section">
+							<p>{{ day.conditions }}<p>
+						</div>
+						<div class="temp-high section">
+							High
+							<p>{{ day.high.fahrenheit }}</p>
+						</div>
+					  <div class="temp-low section">
+							Low
+							<p>{{ day.low.fahrenheit }}</p>
 						</div>
 					</div>
-				<!-- </div> end ng-if -->
+				</div>
 			</div> <!-- end forecast-container -->
 		</div> <!-- end search-data-container -->
 
-		<!-- FOR THE AUTO ZIP FINDER -->
-		<div class="auto-data-container" ng-init="dropZip()">
-			<div class="forecast-container row">
-					<div class="city" ng-repeat="result in results | limitTo:quantity">
-						<h3>The 10 day forecast for {{ result.address_components[7].long_name }}</h3>
-					</div>
-					<div class="forecast" ng-repeat="day in tenDay.forecast.simpleforecast.forecastday">
-						<div class="day col-md-1">
-							<!-- <div class="date section">
-								Date (or time)
-								<p>
-								{{ day.date }}</p>
-							</div> -->
-							<div class="day-of-the-week section">
-								<p>{{ day.date.weekday }}</p>
-							</div>
-							<div class="icon section">
-								<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
-							</div>
-							<div class="text-forecast section">
-								<p>{{ day.conditions }}<p>
-							</div>
-							<div class="temp-high section">
-								High
-								<p>{{ day.high.fahrenheit }}</p>
-							</div>
-						  <div class="temp-low section">
-								Low
-								<p>{{ day.low.fahrenheit }}</p>
-							</div>
-							<!-- not in 10 day -->
-							<!-- <div class="windspeed">
-							</div> -->
-						</div>
-					</div>
-				<!-- </div> end ng-if -->
-			</div> <!-- end forecast-container -->
-		</div>
-	</div>
+	</div> <!-- end main-container -->
 
 	<!-- jQuery (for bootstrap) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -127,7 +110,6 @@
 
 	<!-- Services -->
 	<script src="js/services/forecast.js"></script>
-	<script src="js/services/zipFinder.js"></script>
 
 </body>
 </html>
