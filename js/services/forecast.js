@@ -6,13 +6,13 @@ app.factory('forecast', ['$http', function($http) {
   // }
 
   return {
-  	search: function(keywords) {
-		  console.log('keywords from the factory: ' + keywords);
-	  	return $http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/' + keywords + '.json')
-	    .success(function(data) {
-	      return data;
-	    })
-   	}
+  	// search: function(keywords) {
+		 //  console.log('keywords from the factory: ' + keywords);
+	  // 	return $http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/' + keywords + '.json')
+	  //   .success(function(data) {
+	  //     return data;
+	  //   })
+   // 	}
 
 	}
 
