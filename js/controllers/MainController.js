@@ -37,7 +37,7 @@ app.controller('MainCtrl', function($scope, $http) {
 			      $scope.response = data.response;
 			      console.log($scope.response);
 			      // limit the ng-repeat to 1
-			      $scope.quantity = 1;
+			      $scope.quantity = 5;
 						$scope.tenDayAuto = data;
 		    })
       });
@@ -48,5 +48,26 @@ app.controller('MainCtrl', function($scope, $http) {
 
  	}
 });
+
+
+app.controller('LocationController', function($scope, $http) {
+	$scope.getLocation = function() {
+		// get the location from the HTML navigator
+		navigator.geolocation.getCurrentPosition(function(pos) {
+      var latlng = pos.coords.latitude +","+ pos.coords.longitude;
+
+			$http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=AIzaSyC4Ci51DjN4v2KeWjPZECP40QOBC3iXpp8')
+        .success(function(data){
+          $scope.results = data.results;
+		      $scope.quantity = 1;
+      });
+
+    }, function(error) {
+      alert('Unable to get location: ' + error.message);
+    });
+
+ 	}
+});
+
 
 

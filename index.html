@@ -12,110 +12,112 @@
 	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
 </head>
-<body ng-controller="MainCtrl" ng-init="getMyAddr()" ng-init="dropZip()">
-
-	<div class="main-container" ng-controller="ForecastController">
-
-		<div id="locationErrorMsg"></div>
-
-		<!-- AUTO LOCATION FINDER -->
-		<div class="auto-data-container" ng-init="dropZip()">
-			<div class="forecast-container row">
+<body ng-controller="MainCtrl">
+	<div class="main-container">
+		<div ng-controller="LocationController">
+			<div class="location-container" ng-init="getLocation()">
 				<div class="city" ng-repeat="result in results | limitTo:quantity">
 					<h2>The 10 day forecast for {{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}</h2>
 				</div>
-				<div class="forecast" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday">
-					<div class="day col-sm-4 col-md-1">
-						<!-- <div class="date section">
-							Date (or time)
-							<p>
-							{{ day.date }}</p>
-						</div> -->
-						<div class="day-of-the-week section">
-							<p>{{ day.date.weekday }}</p>
-						</div>
-						<div class="icon section">
-							<div class="weather-icon" ng-if="day.conditions == 'Clear'">
-								<img src="../images/clear.png" title="clear"/>
-								<!-- <img src="{{ day.icon_url }}" data-title="{{ day.icon }}"/> -->
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
-								<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
-								<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Overcast'">
-								<img src="../images/overcast.png" title="Overcast"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Rain'">
-								<img src="../images/rain.png" title="Rain"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Snow'">
-								<img src="../images/snow.png" title="Snow"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Fog'">
-								<img src="../images/fog.png" title="Fog"/>
-							</div>
-						</div>
-						<div class="text-forecast section">
-							<p>{{ day.conditions }}<p>
-						</div>
-						<div class="temp-high section">
-							High
-							<p>{{ day.high.fahrenheit }}</p>
-						</div>
-					  <div class="temp-low section">
-							Low
-							<p>{{ day.low.fahrenheit }}</p>
-						</div>
-					</div>
-				</div>
-			</div> <!-- end forecast-container -->
-		</div> <!-- end auto-data-container -->
-
-		<!-- MANUAL LOCATION SEARCH -->
-		<div class="location-query">
-			<h3>Or type in a zip code</h3>
-			<form ng-submit="search(keywords)">
-				<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
-				<input name="submit" value="Submit" type="submit"/>
-			</form>
+			</div>
 		</div>
 
-		<div class="search-data-container">
-			<div class="forecast-container row">
-				<div class="city" ng-repeat="result in resultsSearch | limitTo:quantity">
-					<h2>The 10 day forecast for {{ result.address_components[1].long_name }}, {{ result.address_components[2].short_name}}</h2>
-				</div>
-				<div class="forecast" ng-repeat="day in tenDaySearch.forecast.simpleforecast.forecastday">
-					<div class="day col-sm-4 col-md-1">
-						<!-- <div class="date section">
-							Date (or time)
-							<p>
-							{{ day.date }}</p>
-						</div> -->
-						<div class="day-of-the-week section">
-							<p>{{ day.date.weekday }}</p>
-						</div>
-						<div class="icon section">
-							<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
-						</div>
-						<div class="text-forecast section">
-							<p>{{ day.conditions }}<p>
-						</div>
-						<div class="temp-high section">
-							High
-							<p>{{ day.high.fahrenheit }}</p>
-						</div>
-					  <div class="temp-low section">
-							Low
-							<p>{{ day.low.fahrenheit }}</p>
+		<div ng-controller="ForecastController">
+			<!-- AUTO LOCATION FINDER -->
+			<div class="auto-data-container" ng-init="dropZip()">
+				<div class="forecast-container row">
+					<div class="forecast" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday | limitTo:quantity">
+						<div class="day col-sm-4 col-md-1">
+							<!-- <div class="date section">
+								Date (or time)
+								<p>
+								{{ day.date }}</p>
+							</div> -->
+							<div class="day-of-the-week section">
+								<p>{{ day.date.weekday }}</p>
+							</div>
+							<div class="icon section">
+								<div class="weather-icon" ng-if="day.conditions == 'Clear'">
+									<img src="../images/clear.png" title="clear"/>
+									<!-- <img src="{{ day.icon_url }}" data-title="{{ day.icon }}"/> -->
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
+									<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
+									<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
+									<img src="../images/overcast.png" title="Overcast"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Rain'">
+									<img src="../images/rain.png" title="Rain"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Snow'">
+									<img src="../images/snow.png" title="Snow"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Fog'">
+									<img src="../images/fog.png" title="Fog"/>
+								</div>
+							</div>
+							<div class="text-forecast section">
+								<p>{{ day.conditions }}<p>
+							</div>
+							<div class="temp-high section">
+								High
+								<p>{{ day.high.fahrenheit }}</p>
+							</div>
+						  <div class="temp-low section">
+								Low
+								<p>{{ day.low.fahrenheit }}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div> <!-- end forecast-container -->
-		</div> <!-- end search-data-container -->
+				</div> <!-- end forecast-container -->
+			</div> <!-- end auto-data-container -->
+
+			<!-- MANUAL LOCATION SEARCH -->
+			<div class="location-query">
+				<h3>Or type in a zip code</h3>
+				<form ng-submit="search(keywords)">
+					<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
+					<input name="submit" value="Submit" type="submit"/>
+				</form>
+			</div>
+
+			<div class="search-data-container">
+				<div class="forecast-container row">
+					<div class="city" ng-repeat="result in resultsSearch | limitTo:quantity">
+						<h2>The 10 day forecast for {{ result.address_components[1].long_name }}, {{ result.address_components[2].short_name}}</h2>
+					</div>
+					<div class="forecast" ng-repeat="day in tenDaySearch.forecast.simpleforecast.forecastday">
+						<div class="day col-sm-4 col-md-1">
+							<!-- <div class="date section">
+								Date (or time)
+								<p>
+								{{ day.date }}</p>
+							</div> -->
+							<div class="day-of-the-week section">
+								<p>{{ day.date.weekday }}</p>
+							</div>
+							<div class="icon section">
+								<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
+							</div>
+							<div class="text-forecast section">
+								<p>{{ day.conditions }}<p>
+							</div>
+							<div class="temp-high section">
+								High
+								<p>{{ day.high.fahrenheit }}</p>
+							</div>
+						  <div class="temp-low section">
+								Low
+								<p>{{ day.low.fahrenheit }}</p>
+							</div>
+						</div>
+					</div>
+				</div> <!-- end forecast-container -->
+			</div> <!-- end search-data-container -->
 
 	</div> <!-- end main-container -->
 
