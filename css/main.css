@@ -1,11 +1,15 @@
 html, body {
 	margin: 0; padding: 0;
+	width: 100%;
+	height: 100%;
 }
+
 .main-container {
 	background: #2D3C57;
 	color: #C0C4CC;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	padding: 20px;
+	height: 100%;
 }
 .city {
 	padding: 0 20px;
