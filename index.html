@@ -8,26 +8,18 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
-	<!-- Google font -->
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+	<!-- Google font for clock-->
+	<link href='https://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
 	<!-- Angular core library -->
 	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
 </head>
-<body ng-controller="MainCtrl" onload="startTime()">
+<body ng-controller="MainCtrl" onload="startTime(), startDate()">
 	<div class="main-container">
 
 		<div id="clock" class="clock"></div>
-
-
-		<div ng-controller="LocationController">
-			<div class="location-container" ng-init="getLocation()">
-				<div class="city" ng-repeat="result in results | limitTo:quantity">
-					<h2>The 5 day forecast for {{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}</h2>
-				</div>
-			</div>
-		</div>
+		<div id="date" class="date"></div>
 
 		<div ng-controller="ForecastController">
 			<!-- AUTO LOCATION FINDER -->
@@ -81,6 +73,14 @@
 					</div>
 				</div> <!-- end forecast-container -->
 			</div> <!-- end auto-data-container -->
+
+			<div ng-controller="LocationController">
+				<div class="location-container" ng-init="getLocation()">
+					<div class="city" ng-repeat="result in results | limitTo:quantity">
+						{{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}
+					</div>
+				</div>
+			</div>
 
 			<!-- MANUAL LOCATION SEARCH -->
 			<div class="location-query">

@@ -20,6 +20,12 @@ function checkTime(i) {
   return i;
 }
 
+function startDate(){
+	var dateString = new Date();
+	var dateString = new Date(dateString).toUTCString();
+	dateString = dateString.split(' ').slice(0, 3).join(' ');
+	document.getElementById('date').innerHTML = dateString;
+}
 
 
 
