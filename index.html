@@ -17,7 +17,7 @@
 		<div ng-controller="LocationController">
 			<div class="location-container" ng-init="getLocation()">
 				<div class="city" ng-repeat="result in results | limitTo:quantity">
-					<h2>The 10 day forecast for {{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}</h2>
+					<h2>The 5 day forecast for {{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}</h2>
 				</div>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 			<div class="auto-data-container" ng-init="dropZip()">
 				<div class="forecast-container row">
 					<div class="forecast" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday | limitTo:quantity">
-						<div class="day col-sm-4 col-md-1">
+						<div class="day">
 							<!-- <div class="date section">
 								Date (or time)
 								<p>
@@ -39,7 +39,6 @@
 							<div class="icon section">
 								<div class="weather-icon" ng-if="day.conditions == 'Clear'">
 									<img src="../images/clear.png" title="clear"/>
-									<!-- <img src="{{ day.icon_url }}" data-title="{{ day.icon }}"/> -->
 								</div>
 								<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
 									<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
@@ -91,7 +90,7 @@
 						<h2>The 10 day forecast for {{ result.address_components[1].long_name }}, {{ result.address_components[2].short_name}}</h2>
 					</div>
 					<div class="forecast" ng-repeat="day in tenDaySearch.forecast.simpleforecast.forecastday">
-						<div class="day col-sm-4 col-md-1">
+						<div class="day">
 							<!-- <div class="date section">
 								Date (or time)
 								<p>
@@ -101,7 +100,27 @@
 								<p>{{ day.date.weekday }}</p>
 							</div>
 							<div class="icon section">
-								<img src="{{ day.icon_url }}" title="{{ day.icon }}"/>
+								<div class="weather-icon" ng-if="day.conditions == 'Clear'">
+									<img src="../images/clear.png" title="clear"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
+									<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
+									<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
+									<img src="../images/overcast.png" title="Overcast"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Rain'">
+									<img src="../images/rain.png" title="Rain"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Snow'">
+									<img src="../images/snow.png" title="Snow"/>
+								</div>
+								<div class="weather-icon" ng-if="day.conditions == 'Fog'">
+									<img src="../images/fog.png" title="Fog"/>
+								</div>
 							</div>
 							<div class="text-forecast section">
 								<p>{{ day.conditions }}<p>

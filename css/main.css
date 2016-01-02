@@ -11,6 +11,13 @@ html, body {
 	padding: 20px;
 	height: 100%;
 }
+.forecast-container {
+	text-align: center;
+}
+.forecast {
+	display: inline-block;
+	width: 200px;
+}
 .city {
 	padding: 0 20px;
 }
@@ -23,6 +30,7 @@ html, body {
   -webkit-animation-delay: 1.5s;
 	background: #2D3C57;
 	float: left;
+	/*width: 100%;*/
 }
 .icon {
 	min-height: 60px;

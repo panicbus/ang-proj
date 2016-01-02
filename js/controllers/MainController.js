@@ -50,6 +50,7 @@ app.controller('MainCtrl', function($scope, $http) {
 });
 
 
+// USER'S LOCATION DISPLAY
 app.controller('LocationController', function($scope, $http) {
 	$scope.getLocation = function() {
 		// get the location from the HTML navigator
