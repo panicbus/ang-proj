@@ -48,6 +48,12 @@ html, body {
 .weather-icon img {
     width: 70px;
 }
+.clock {
+	font-family: "Open Sans", sans-serif;
+	font-size: 160px;
+	text-align: center;
+	margin: -30px 0;
+}
 
 
 

@@ -8,12 +8,19 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 
+	<!-- Google font -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
 	<!-- Angular core library -->
 	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
 </head>
-<body ng-controller="MainCtrl">
+<body ng-controller="MainCtrl" onload="startTime()">
 	<div class="main-container">
+
+		<div id="clock" class="clock"></div>
+
+
 		<div ng-controller="LocationController">
 			<div class="location-container" ng-init="getLocation()">
 				<div class="city" ng-repeat="result in results | limitTo:quantity">
