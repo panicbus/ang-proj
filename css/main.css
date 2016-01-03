@@ -6,7 +6,7 @@ html, body {
 
 .main-container {
 	background: #2D3C57;
-	color: #C0C4CC;
+	color: #ecf0f1;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	padding: 20px;
 	height: 100%;
@@ -14,9 +14,9 @@ html, body {
 .forecast-container {
 	text-align: center;
 }
-.forecast {
+.day {
 	display: inline-block;
-	width: 200px;
+	width: 175px;
 }
 .city {
 	padding: 0 20px;
@@ -24,16 +24,13 @@ html, body {
 .section {
 	padding: 5px;
 	text-align: center;
-}
-.day {
-  -moz-animation-delay: 1.5s;
-  -webkit-animation-delay: 1.5s;
-	background: #2D3C57;
-	float: left;
-	/*width: 100%;*/
+	clear: both;
 }
 .icon {
 	min-height: 60px;
+}
+.day-of-the-week {
+	font-size: 25px;
 }
 .text-forecast {
 	min-height: 64px;
@@ -41,16 +38,23 @@ html, body {
 .temp-high, .temp-low {
 	float: left;
 	width: 42%;
+	font-size: 30px;
+}
+.high-low {
+	display: inline-block;
 }
 .temp-high {
 	margin-right: 10px;
+}
+.temp-low {
+	color: #687387;
 }
 .weather-icon img {
     width: 70px;
 }
 .city, .date {
 	text-align: center;
-	color: #888;
+	color: #687387;
 	font-size: 16px;
 }
 .clock {
@@ -59,6 +63,3 @@ html, body {
 	text-align: center;
 	margin: -30px 0;
 }
-
-
-

@@ -25,50 +25,49 @@
 			<!-- AUTO LOCATION FINDER -->
 			<div class="auto-data-container" ng-init="dropZip()">
 				<div class="forecast-container row">
-					<div class="forecast" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday | limitTo:quantity">
-						<div class="day">
-							<!-- <div class="date section">
-								Date (or time)
-								<p>
-								{{ day.date }}</p>
-							</div> -->
-							<div class="day-of-the-week section">
-								<p>{{ day.date.weekday }}</p>
+					<div class="day" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday | limitTo:quantity">
+						<!-- <div class="date section">
+							Date (or time)
+							<p>
+							{{ day.date }}</p>
+						</div> -->
+
+						<div class="icon section">
+							<div class="weather-icon" ng-if="day.conditions == 'Clear'">
+								<img src="../images/clear.png" title="clear"/>
 							</div>
-							<div class="icon section">
-								<div class="weather-icon" ng-if="day.conditions == 'Clear'">
-									<img src="../images/clear.png" title="clear"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
-									<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
-									<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
-									<img src="../images/overcast.png" title="Overcast"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Rain'">
-									<img src="../images/rain.png" title="Rain"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Snow'">
-									<img src="../images/snow.png" title="Snow"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Fog'">
-									<img src="../images/fog.png" title="Fog"/>
-								</div>
+							<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
+								<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
 							</div>
-							<div class="text-forecast section">
-								<p>{{ day.conditions }}<p>
+							<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
+								<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
 							</div>
-							<div class="temp-high section">
-								High
-								<p>{{ day.high.fahrenheit }}</p>
+							<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
+								<img src="../images/overcast.png" title="Overcast"/>
 							</div>
-						  <div class="temp-low section">
-								Low
-								<p>{{ day.low.fahrenheit }}</p>
+							<div class="weather-icon" ng-if="day.conditions == 'Rain'">
+								<img src="../images/rain.png" title="Rain"/>
 							</div>
+							<div class="weather-icon" ng-if="day.conditions == 'Snow'">
+								<img src="../images/snow.png" title="Snow"/>
+							</div>
+							<div class="weather-icon" ng-if="day.conditions == 'Fog'">
+								<img src="../images/fog.png" title="Fog"/>
+							</div>
+						</div>
+						<!-- <div class="text-forecast section">
+							<p>{{ day.conditions }}<p>
+						</div> -->
+						<div class="high-low section">
+							<div class="temp-high">
+								{{ day.high.fahrenheit }}
+							</div>
+							<div class="temp-low">
+								{{ day.low.fahrenheit }}
+							</div>
+						</div>
+						<div class="day-of-the-week section">
+							{{ day.date.weekday }}
 						</div>
 					</div>
 				</div> <!-- end forecast-container -->
@@ -103,9 +102,6 @@
 								<p>
 								{{ day.date }}</p>
 							</div> -->
-							<div class="day-of-the-week section">
-								<p>{{ day.date.weekday }}</p>
-							</div>
 							<div class="icon section">
 								<div class="weather-icon" ng-if="day.conditions == 'Clear'">
 									<img src="../images/clear.png" title="clear"/>
@@ -132,19 +128,24 @@
 							<div class="text-forecast section">
 								<p>{{ day.conditions }}<p>
 							</div>
-							<div class="temp-high section">
-								High
-								<p>{{ day.high.fahrenheit }}</p>
+							<div class="high-low">
+								<div class="temp-high section">
+									High
+									<p>{{ day.high.fahrenheit }}</p>
+								</div>
+							  <div class="temp-low section">
+									Low
+									<p>{{ day.low.fahrenheit }}</p>
+								</div>
 							</div>
-						  <div class="temp-low section">
-								Low
-								<p>{{ day.low.fahrenheit }}</p>
+							<div class="day-of-the-week section">
+								<p>{{ day.date.weekday }}</p>
 							</div>
 						</div>
 					</div>
 				</div> <!-- end forecast-container -->
 			</div> <!-- end search-data-container -->
-
+		</div> <!-- end forecast controller div -->
 	</div> <!-- end main-container -->
 
 	<!-- jQuery (for bootstrap) -->
