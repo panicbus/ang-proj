@@ -49,8 +49,12 @@ html, body {
 .temp-low {
 	color: #687387;
 }
-.weather-icon img {
-    width: 70px;
+.weather-icon {
+    width: 90px;
+    margin: 0 auto;
+}
+svg path {
+  fill: #ecf0f1;
 }
 .city, .date {
 	text-align: center;

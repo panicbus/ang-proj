@@ -26,38 +26,29 @@
 			<div class="auto-data-container" ng-init="dropZip()">
 				<div class="forecast-container row">
 					<div class="day" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday | limitTo:quantity">
-						<!-- <div class="date section">
-							Date (or time)
-							<p>
-							{{ day.date }}</p>
-						</div> -->
-
 						<div class="icon section">
 							<div class="weather-icon" ng-if="day.conditions == 'Clear'">
-								<img src="../images/clear.png" title="clear"/>
+								<img src="../images/clear.svg" class="svg icon" title="clear"/>
 							</div>
 							<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
-								<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
+								<img src="../images/partly_cloudy.svg" class="svg icon" title="Partly Cloudy"/>
 							</div>
 							<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
-								<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
+								<img src="../images/chance_of_rain.svg" class="svg icon" title="Chance of Rain"/>
 							</div>
 							<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
-								<img src="../images/overcast.png" title="Overcast"/>
+								<img src="../images/overcast.svg" class="svg icon" title="Overcast"/>
 							</div>
 							<div class="weather-icon" ng-if="day.conditions == 'Rain'">
-								<img src="../images/rain.png" title="Rain"/>
+								<img src="../images/rain.svg" class="svg icon" title="Rain"/>
 							</div>
 							<div class="weather-icon" ng-if="day.conditions == 'Snow'">
-								<img src="../images/snow.png" title="Snow"/>
+								<img src="../images/snow.svg" class="svg icon" title="Snow"/>
 							</div>
 							<div class="weather-icon" ng-if="day.conditions == 'Fog'">
-								<img src="../images/fog.png" title="Fog"/>
+								<img src="../images/fog.svg" class="svg icon" title="Fog"/>
 							</div>
 						</div>
-						<!-- <div class="text-forecast section">
-							<p>{{ day.conditions }}<p>
-						</div> -->
 						<div class="high-low section">
 							<div class="temp-high">
 								{{ day.high.fahrenheit }}
@@ -156,6 +147,7 @@
 
 	<!-- Modules -->
   <script src="js/app.js"></script>
+  <script src="js/toSvg.js"></script>
 
 	<!-- Controllers -->
 	<script src="js/controllers/MainController.js"></script>
