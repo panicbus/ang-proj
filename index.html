@@ -12,131 +12,37 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
 
 	<!-- Angular core library -->
-	 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.3.0-rc.2/angular-resource.min.js"></script> <!-- ngResource dependency -->
 
 </head>
-<body ng-controller="MainCtrl" onload="startTime(), startDate()">
+<body ng-controller="MainController" onload="startTime(), startDate()">
 	<div class="main-container">
 
+		<!-- the clock -->
 		<div id="clock" class="clock"></div>
 		<div id="date" class="date"></div>
 
-		<div ng-controller="ForecastController">
-			<!-- AUTO LOCATION FINDER -->
-			<div class="auto-data-container" ng-init="dropZip()">
-				<div class="forecast-container row">
-					<div class="day" ng-repeat="day in tenDayAuto.forecast.simpleforecast.forecastday | limitTo:quantity">
-						<div class="icon section">
-							<div class="weather-icon" ng-if="day.conditions == 'Clear'">
-								<img src="../images/clear.svg" class="svg icon" title="clear"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
-								<img src="../images/partly_cloudy.svg" class="svg icon" title="Partly Cloudy"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
-								<img src="../images/chance_of_rain.svg" class="svg icon" title="Chance of Rain"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
-								<img src="../images/overcast.svg" class="svg icon" title="Overcast"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Rain'">
-								<img src="../images/rain.svg" class="svg icon" title="Rain"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Snow'">
-								<img src="../images/snow.svg" class="svg icon" title="Snow"/>
-							</div>
-							<div class="weather-icon" ng-if="day.conditions == 'Fog'">
-								<img src="../images/fog.svg" class="svg icon" title="Fog"/>
-							</div>
-						</div>
-						<div class="high-low section">
-							<div class="temp-high">
-								{{ day.high.fahrenheit }}
-							</div>
-							<div class="temp-low">
-								{{ day.low.fahrenheit }}
-							</div>
-						</div>
-						<div class="day-of-the-week section">
-							{{ day.date.weekday }}
-						</div>
-					</div>
-				</div> <!-- end forecast-container -->
-			</div> <!-- end auto-data-container -->
-
-			<div ng-controller="LocationController">
-				<div class="location-container" ng-init="getLocation()">
-					<div class="city" ng-repeat="result in results | limitTo:quantity">
-						{{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}
-					</div>
+		<!-- the forecast -->
+		<div class="forecast-row row">
+			<div class="forecast-container">
+				<div ng-repeat="w in weatherResult.list" class="icon-container">
+					<weather-condition weather-cond="w"></weather-condition>
+				</div>
+				<div ng-repeat="w in weatherResult.list" class='day-container'>
+					<weather-report weather-date="w" convert-to-standard="convertToFarenheit(daytimeTemp)" convert-to-date="convertToDate(date)" date-format="EEEE"></weather-report>
 				</div>
 			</div>
+		</div>
 
-			<!-- MANUAL LOCATION SEARCH -->
-			<div class="location-query">
-				<h3>Or type in a zip code</h3>
-				<form ng-submit="search(keywords)">
-					<input type="text" ng-model="keywords" name="field" id="locationSubmit" placeholder="Enter your location" autofocus />
-					<input name="submit" value="Submit" type="submit"/>
-				</form>
+		<!-- the location -->
+		<div ng-controller="LocationController">
+			<div class="location-container" ng-init="getLocation()">
+				<div class="city" ng-repeat="result in results | limitTo:quantity" ng-cloak>
+					{{ result.address_components[3].long_name }}, {{ result.address_components[5].short_name}}
+				</div>
 			</div>
-
-			<div class="search-data-container">
-				<div class="forecast-container row">
-					<div class="city" ng-repeat="result in resultsSearch | limitTo:quantity">
-						<h2>The 10 day forecast for {{ result.address_components[1].long_name }}, {{ result.address_components[2].short_name}}</h2>
-					</div>
-					<div class="forecast" ng-repeat="day in tenDaySearch.forecast.simpleforecast.forecastday">
-						<div class="day">
-							<!-- <div class="date section">
-								Date (or time)
-								<p>
-								{{ day.date }}</p>
-							</div> -->
-							<div class="icon section">
-								<div class="weather-icon" ng-if="day.conditions == 'Clear'">
-									<img src="../images/clear.png" title="clear"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Partly Cloudy'">
-									<img src="../images/partly_cloudy.png" title="Partly Cloudy"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Chance of Rain'">
-									<img src="../images/chance_of_rain.png" title="Chance of Rain"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Overcast' || day.conditions == 'Mostly Cloudy'">
-									<img src="../images/overcast.png" title="Overcast"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Rain'">
-									<img src="../images/rain.png" title="Rain"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Snow'">
-									<img src="../images/snow.png" title="Snow"/>
-								</div>
-								<div class="weather-icon" ng-if="day.conditions == 'Fog'">
-									<img src="../images/fog.png" title="Fog"/>
-								</div>
-							</div>
-							<div class="text-forecast section">
-								<p>{{ day.conditions }}<p>
-							</div>
-							<div class="high-low">
-								<div class="temp-high section">
-									High
-									<p>{{ day.high.fahrenheit }}</p>
-								</div>
-							  <div class="temp-low section">
-									Low
-									<p>{{ day.low.fahrenheit }}</p>
-								</div>
-							</div>
-							<div class="day-of-the-week section">
-								<p>{{ day.date.weekday }}</p>
-							</div>
-						</div>
-					</div>
-				</div> <!-- end forecast-container -->
-			</div> <!-- end search-data-container -->
-		</div> <!-- end forecast controller div -->
+		</div>
 	</div> <!-- end main-container -->
 
 	<!-- jQuery (for bootstrap) -->
@@ -154,6 +60,10 @@
 
 	<!-- Services -->
 	<script src="js/services/forecast.js"></script>
+
+	<!-- Directives -->
+  <script src="directives.js"></script>
+
 
 </body>
 </html>

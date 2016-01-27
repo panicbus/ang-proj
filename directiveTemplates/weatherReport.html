@@ -1,0 +1,43 @@
+<!-- CUSTOM DIRECTIVE TEMPLATE -->
+<div class="day" ng-cloak>
+	<!-- call the custom date convert function with the data as the parmameter  -->
+	<!-- date filters come from docs.angularjs.org/api/ng/filter/date -->
+	<!-- call the custom temp convert function with the data as the parmameter  -->
+
+		<div class="icon section">
+		  <div class="weather-icon" ng-if="weatherDate.weather[0].main == 'Clear'">
+				<img src="../images/clear.svg" id="svgIcon" class="svg icon" title="Clear"/>
+			</div>
+			<div class="weather-icon" ng-if="weatherDate.weather[0].description == 'broken clouds' || weatherDate.weather[0].description == 'few clouds' || weatherDate.weather[0].description == 'scattered clouds'">
+				<img src="../images/partly_cloudy.svg" id="svgIcon" class="svg icon" title="Partly Cloudy"/>
+			</div>
+			<div class="weather-icon" ng-if="weatherDate.weather[0].description == 'Chance of Rain'">
+				<img src="../images/chance_of_rain.svg" id="svgIcon" class="svg icon" title="Chance of Rain"/>
+			</div>
+			<div class="wDate-icon" ng-if="weatherDate.weather[0].description == 'overcast clouds'">
+				<img src="../images/overcast.svg" id="svgIcon" class="svg icon" title="Overcast"/>
+			</div>
+			<div class="weather-icon" ng-if="weatherDate.weather[0].main == 'Rain'">
+				<img src="../images/rain.svg" id="svgIcon" class="svg icon" title="Rain"/>
+			</div>
+			<div class="weather-icon" ng-if="weatherDate.weather[0].main == 'Snow'">
+				<img src="../images/snow.svg" id="svgIcon" class="svg icon" title="Snow"/>
+			</div>
+			<div class="weather-icon" ng-if="weatherDate.weather[0].description == 'mist'">
+				<img src="../images/fog.svg" id="svgIcon" class="svg icon" title="Fog"/>
+			</div>
+		</div>
+		<div class="high-low section">
+			<div class="temp-high">
+			 	{{ convertToStandard({ daytimeTemp: weatherDate.main.temp_max }) }}
+			</div>
+			<div class="temp-low">
+				{{ convertToStandard({ daytimeTemp: weatherDate.main.temp_min }) }}
+			</div>
+		</div>
+		<div class="day-of-the-week section" ng-cloak>
+			{{ convertToDate({ date: weatherDate.dt }) | date: dateFormat }}
+		</div>
+	</div> <!-- end forecast-container -->
+
+</div>

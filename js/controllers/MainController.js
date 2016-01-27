@@ -1,53 +1,43 @@
-// MANUAL LOCATION SEARCH
-app.controller('ForecastController', function($scope, forecast, $http) {
-	$scope.search = function(keywords) {
-		// get the longform location from GMaps to display
-		$http.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + keywords + '&key=AIzaSyC4Ci51DjN4v2KeWjPZECP40QOBC3iXpp8')
-      .success(function(data){
-        $scope.resultsSearch = data.results;
-    });
-    // then get the forecast from WU
-		$http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/' + keywords + '.json')
-	    .success(function(data) {
-	      $scope.response = data.response;
-	      console.log("the response: " + $scope.response);
-	      // limit the ng-repeat to 1
-	      $scope.quantity = 1;
-				$scope.tenDaySearch = data;
-	      console.log("the tenDaySearch: " + $scope.tenDaySearch);
-    })
-	}
-});
-
 // AUTO LOCATION
-app.controller('MainCtrl', function($scope, $http) {
-	$scope.dropZip = function() {
-		// get the location from the HTML navigator
-		navigator.geolocation.getCurrentPosition(function(pos) {
-      var latlng = pos.coords.latitude +","+ pos.coords.longitude;
+app.controller('MainController', ['$scope', '$http', '$resource', 'daysService', function($scope, $http, $resource, daysService) {
+	navigator.geolocation.getCurrentPosition(function(pos) {
+		var lat = pos.coords.latitude;
+		var lon = pos.coords.longitude;
+		var latlng = pos.coords.latitude +","+ pos.coords.longitude;
 
-			$http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=AIzaSyC4Ci51DjN4v2KeWjPZECP40QOBC3iXpp8')
-        .success(function(data){
-          $scope.results = data.results;
-          zipcode = data.results[0].address_components[7].long_name;
+		$http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=AIzaSyC4Ci51DjN4v2KeWjPZECP40QOBC3iXpp8')
+			.success(function(data){
+				$scope.results = data.results;
+				zipcode = data.results[0].address_components[7].long_name;
+				console.log(zipcode)
+			$scope.city = zipcode;
+			$scope.days = daysService.days;
+			// a new scope property for the number of days to forecast
+			// to make it match the bg-primary class need to make it a string (because of the ===)
+			// $scope.days = $routeParams.days || '4'; // default to 4
 
-				// use the GMaps zipcode from above for the WU API call
-		  	$http.get('http://api.wunderground.com/api/2e91cf72317737fc/forecast10day/q/' + zipcode + '.json')
-			    .success(function(data) {
-			      $scope.response = data.response;
-			      console.log($scope.response);
-			      // limit the ng-repeat to 1
-			      $scope.quantity = 5;
-						$scope.tenDayAuto = data;
-		    })
-      });
+			$scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast', {callback: 'JSON_CALLBACK'}, {get: {method: 'JSONP'}});
+			// passing lat/lon (the position) and $scope.days (no of days) into the API request
+			$scope.weatherResult = $scope.weatherAPI.get({ zip: zipcode, cnt: $scope.days, APPID: '8a70acaa3e2099b0af9f591707b823df' });
 
-    }, function(error) {
-      alert('Unable to get location: ' + error.message);
-    });
+			// $scope.weatherResult.$promise.then(function onFulfilled(data) {
+			// 	var forecast = data.list[0].weather[0].description
+			// 	console.log(forecast);
+			// });
 
- 	}
-});
+			$scope.convertToFarenheit = function(degK){
+				return Math.round((1.8 * (degK - 273)) + 32 );
+			}
+			$scope.convertToDate = function(date){
+				return new Date(date * 1000);
+			}
+		});
+	}, function(error) {
+		alert('Unable to get location: ' + error.message);
+	});
+}]);
+
+
 
 
 // USER'S LOCATION DISPLAY
@@ -55,17 +45,17 @@ app.controller('LocationController', function($scope, $http) {
 	$scope.getLocation = function() {
 		// get the location from the HTML navigator
 		navigator.geolocation.getCurrentPosition(function(pos) {
-      var latlng = pos.coords.latitude +","+ pos.coords.longitude;
+			var latlng = pos.coords.latitude +","+ pos.coords.longitude;
 
 			$http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&key=AIzaSyC4Ci51DjN4v2KeWjPZECP40QOBC3iXpp8')
-        .success(function(data){
-          $scope.results = data.results;
-		      $scope.quantity = 1;
-      });
+				.success(function(data){
+					$scope.results = data.results;
+					$scope.quantity = 1;
+			});
 
-    }, function(error) {
-      alert('Unable to get location: ' + error.message);
-    });
+		}, function(error) {
+			alert('Unable to get location: ' + error.message);
+		});
 
  	}
 });

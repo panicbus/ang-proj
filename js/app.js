@@ -1,4 +1,4 @@
-var app = angular.module('ForecastApp', []);
+var app = angular.module('ForecastApp', ['ngResource']);
 
 function startTime(){
 	var today, h, m, s;
