@@ -26,14 +26,15 @@
 		<!-- the forecast -->
 		<div class="forecast-row row">
 			<div class="forecast-container">
-				<div ng-repeat="w in weatherResult.list" class="icon-container">
-					<weather-condition weather-cond="w"></weather-condition>
-				</div>
+				<!-- <div ng-repeat="w in weatherResult.list" class="icon-container">
+					<weather-report weather-date="w"></weather-report>
+				</div> -->
 				<div ng-repeat="w in weatherResult.list" class='day-container'>
-					<weather-report weather-date="w" convert-to-standard="convertToFarenheit(daytimeTemp)" convert-to-date="convertToDate(date)" date-format="EEEE"></weather-report>
+					<weather-report weather-date="w" convert-to-integer="convertToInt(round)" convert-to-date="convertToDate(date)" date-format="EEEE"></weather-report>
 				</div>
 			</div>
 		</div>
+
 
 		<!-- the location -->
 		<div ng-controller="LocationController">

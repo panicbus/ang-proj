@@ -16,17 +16,18 @@ app.controller('MainController', ['$scope', '$http', '$resource', 'daysService',
 			// to make it match the bg-primary class need to make it a string (because of the ===)
 			// $scope.days = $routeParams.days || '4'; // default to 4
 
-			$scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast', {callback: 'JSON_CALLBACK'}, {get: {method: 'JSONP'}});
+			// for the date and temp
+			$scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast/daily', {callback: 'JSON_CALLBACK'}, {get: {method: 'JSONP'}});
 			// passing lat/lon (the position) and $scope.days (no of days) into the API request
-			$scope.weatherResult = $scope.weatherAPI.get({ zip: zipcode, cnt: $scope.days, APPID: '8a70acaa3e2099b0af9f591707b823df' });
+			$scope.weatherResult = $scope.weatherAPI.get({ zip: zipcode, cnt: $scope.days, units: "imperial", APPID: '8a70acaa3e2099b0af9f591707b823df' });
 
 			// $scope.weatherResult.$promise.then(function onFulfilled(data) {
 			// 	var forecast = data.list[0].weather[0].description
 			// 	console.log(forecast);
 			// });
 
-			$scope.convertToFarenheit = function(degK){
-				return Math.round((1.8 * (degK - 273)) + 32 );
+			$scope.convertToInt = function(dec){
+				return Math.round(dec);
 			}
 			$scope.convertToDate = function(date){
 				return new Date(date * 1000);

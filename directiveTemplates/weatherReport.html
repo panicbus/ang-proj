@@ -14,7 +14,7 @@
 			<div class="weather-icon" ng-if="weatherDate.weather[0].description == 'Chance of Rain'">
 				<img src="../images/chance_of_rain.svg" id="svgIcon" class="svg icon" title="Chance of Rain"/>
 			</div>
-			<div class="wDate-icon" ng-if="weatherDate.weather[0].description == 'overcast clouds'">
+			<div class="weather-icon" ng-if="weatherDate.weather[0].description == 'overcast clouds'">
 				<img src="../images/overcast.svg" id="svgIcon" class="svg icon" title="Overcast"/>
 			</div>
 			<div class="weather-icon" ng-if="weatherDate.weather[0].main == 'Rain'">
@@ -29,14 +29,15 @@
 		</div>
 		<div class="high-low section">
 			<div class="temp-high">
-			 	{{ convertToStandard({ daytimeTemp: weatherDate.main.temp_max }) }}
+				{{ convertToInteger({ round: weatherDate.temp.max }) }}
 			</div>
 			<div class="temp-low">
-				{{ convertToStandard({ daytimeTemp: weatherDate.main.temp_min }) }}
+				{{ convertToInteger({ round: weatherDate.temp.min }) }}
 			</div>
 		</div>
 		<div class="day-of-the-week section" ng-cloak>
 			{{ convertToDate({ date: weatherDate.dt }) | date: dateFormat }}
+
 		</div>
 	</div> <!-- end forecast-container -->
 

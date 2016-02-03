@@ -5,7 +5,7 @@ app.directive('weatherReport', function(){ // weatherReport is normalized to wea
     replace: false, // true to remove the custom directive container fr the HTML
     scope: {
       weatherDate: '=', // isoloating these as text so the won't be corrupted by other things - it's an object not just text so, =
-      convertToStandard: '&',  // it's a function so, &
+      convertToInteger: '&', // it's a function so, &
       convertToDate: '&',
       dateFormat: '@' // the date is just a string, so text or @
     }
