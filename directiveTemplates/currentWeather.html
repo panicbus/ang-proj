@@ -1,0 +1,30 @@
+<div class="day">
+	<div class="icon-section">
+		<div class="weather-icon" ng-if="currentWeathular.main == 'Clear'">
+			<img src="../images/clear.svg" id="svgIcon" class="svg icon" title="Clear"/>
+		</div>
+		<div class="weather-icon" ng-if="currentWeathular.description == 'broken clouds' || currentWeathular.description == 'few clouds' || currentWeathular.description == 'scattered clouds'">
+			<img src="../images/partly_cloudy.svg" id="svgIcon" class="svg icon" title="Partly Cloudy"/>
+		</div>
+		<div class="weather-icon" ng-if="currentWeathular.description == 'Chance of Rain'">
+			<img src="../images/chance_of_rain.svg" id="svgIcon" class="svg icon" title="Chance of Rain"/>
+		</div>
+		<div class="weather-icon" ng-if="currentWeathular.description == 'overcast clouds'">
+			<img src="../images/overcast.svg" id="svgIcon" class="svg icon" title="Overcast"/>
+		</div>
+		<div class="weather-icon" ng-if="currentWeathular.main == 'Rain'">
+			<img src="../images/rain.svg" id="svgIcon" class="svg icon" title="Rain"/>
+		</div>
+		<div class="weather-icon" ng-if="currentWeathular.main == 'Snow'">
+			<img src="../images/snow.svg" id="svgIcon" class="svg icon" title="Snow"/>
+		</div>
+		<div class="weather-icon" ng-if="currentWeathular.description == 'mist'">
+			<img src="../images/fog.svg" id="svgIcon" class="svg icon" title="Fog"/>
+		</div>
+	</div>
+	<div class="now">
+		Now
+	</div>
+</div>
+<!-- 	temp below
+	{{ currentTemp.temp }} -->

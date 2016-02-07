@@ -16,15 +16,18 @@ app.controller('MainController', ['$scope', '$http', '$resource', 'daysService',
 			// to make it match the bg-primary class need to make it a string (because of the ===)
 			// $scope.days = $routeParams.days || '4'; // default to 4
 
-			// for the date and temp
+			// for the 5 day forecast date and temp
 			$scope.weatherAPI = $resource('http://api.openweathermap.org/data/2.5/forecast/daily', {callback: 'JSON_CALLBACK'}, {get: {method: 'JSONP'}});
 			// passing lat/lon (the position) and $scope.days (no of days) into the API request
 			$scope.weatherResult = $scope.weatherAPI.get({ zip: zipcode, cnt: $scope.days, units: "imperial", APPID: '8a70acaa3e2099b0af9f591707b823df' });
 
-			// $scope.weatherResult.$promise.then(function onFulfilled(data) {
-			// 	var forecast = data.list[0].weather[0].description
-			// 	console.log(forecast);
-			// });
+			// for the current conditions
+			$scope.currentweatherAPI = $resource('http://api.openweathermap.org/data/2.5/weather', {callback: 'JSON_CALLBACK'}, {get: {method: 'JSONP'}});
+			$scope.currentWeathular = $scope.currentweatherAPI.get({ zip: zipcode, units: "imperial", APPID: '8a70acaa3e2099b0af9f591707b823df' });
+
+			// $scope.currentWeathular.$promise.then(function onFulfilled(data) {
+			// 	var conditionsNow = $scope.currentWeathular;
+		 	// });
 
 			$scope.convertToInt = function(dec){
 				return Math.round(dec);

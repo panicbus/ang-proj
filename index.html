@@ -25,10 +25,18 @@
 
 		<!-- the forecast -->
 		<div class="forecast-row row">
+			<div class="current-container">
+				<div class="today">
+					<div ng-repeat="c in currentWeathular.weather" class="day-container">
+						<current-weather current-weathular="c"></current-weather>
+					</div>
+					<!-- <div ng-repeat="d in currentTemp.main" class="day-container">
+						<current-weather current-temp="d"></current-weather>
+					</div> -->
+				</div>
+			</div>
+
 			<div class="forecast-container">
-				<!-- <div ng-repeat="w in weatherResult.list" class="icon-container">
-					<weather-report weather-date="w"></weather-report>
-				</div> -->
 				<div ng-repeat="w in weatherResult.list" class='day-container'>
 					<weather-report weather-date="w" convert-to-integer="convertToInt(round)" convert-to-date="convertToDate(date)" date-format="EEEE"></weather-report>
 				</div>
