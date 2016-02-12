@@ -6,8 +6,7 @@ html, body {
 
 .main-container {
 	background: #2D3C57;
-	/*color: #ecf0f1;*/
-	color: #000;
+	color: #ecf0f1;
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	padding: 20px;
 	height: 100%;
@@ -15,7 +14,6 @@ html, body {
 .today {
 	zoom: 2;
 }
-
 
 .forecast-row {
 	text-align: center;
@@ -92,16 +90,6 @@ html, body {
 .weather-icon {
   width: 90px;
   margin: 0 auto;
-}
-#svgIcon path {
-	fill: blue;
-}
-.svg path {
-  fill: #ecf0f1;
-  background-color: #fff;
-}
-.svg:hover path {
-  fill: red;
 }
 .city, .date {
 	text-align: center;
